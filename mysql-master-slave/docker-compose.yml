@@ -11,7 +11,7 @@ services:
       MYSQL_REPLICATION_USER: repl_user
       MYSQL_REPLICATION_PASSWORD: af45d4daS*
     ports:
-      - "3306:3306"
+      - "3316:3306"
     volumes:
       # 挂载自定义配置文件
       - ./conf/master.cnf:/etc/mysql/conf.d/master.cnf
@@ -28,7 +28,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: af45d4daS*
     ports:
-      - "3307:3306" # 映射到宿主机的 3307 端口
+      - "3317:3306" # 映射到宿主机的 3307 端口
     volumes:
       - ./conf/slave1.cnf:/etc/mysql/conf.d/slave1.cnf
     command: --default-authentication-plugin=mysql_native_password
@@ -41,7 +41,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: af45d4daS*
     ports:
-      - "3308:3306" # 映射到宿主机的 3308 端口
+      - "3318:3306" # 映射到宿主机的 3308 端口
     volumes:
       - ./conf/slave2.cnf:/etc/mysql/conf.d/slave2.cnf
     command: --default-authentication-plugin=mysql_native_password
