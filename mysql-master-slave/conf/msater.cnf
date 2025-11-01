@@ -10,4 +10,6 @@ bind-address=0.0.0.0
 # 允许从节点连接
 skip-name-resolve
 # 忽略 SSL (简单测试用)
-skip-ssl
+ssl_ca=/path/to/ca.pem
+ssl_cert=/path/to/server-cert.pem
+ssl_key=/path/to/server-key.pem
