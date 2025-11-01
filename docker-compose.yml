@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # --- MySQL MGR 节点 1 ---
   mysql1:
-    image: mysql/mysql-server:8.0
+    image: registry.cn-shanghai.aliyuncs.com/wukongim/mysql:8.0.33
     container_name: mysql1
     # 宿主机端口映射，方便管理
     ports: 
@@ -31,7 +31,7 @@ services:
 
   # --- MySQL MGR 节点 2 ---
   mysql2:
-    image: mysql/mysql-server:8.0
+    image: registry.cn-shanghai.aliyuncs.com/wukongim/mysql:8.0.33
     container_name: mysql2
     environment:
       MYSQL_ROOT_PASSWORD: Root_Password_123
@@ -50,7 +50,7 @@ services:
 
   # --- MySQL MGR 节点 3 ---
   mysql3:
-    image: mysql/mysql-server:8.0
+    image: registry.cn-shanghai.aliyuncs.com/wukongim/mysql:8.0.33
     container_name: mysql3
     environment:
       MYSQL_ROOT_PASSWORD: Root_Password_123
