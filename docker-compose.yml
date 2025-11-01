@@ -104,6 +104,11 @@ services:
     depends_on:
       mysql1:
         condition: service_healthy
+      mysql2:
+        condition: service_healthy
+      mysql3:
+        condition: service_healthy
+      
 
     # 关键修改：覆盖默认启动命令，先启动 proxysql，再执行配置脚本
     command: /bin/bash -c "proxysql & /usr/local/bin/load-proxysql.sh && fg"
