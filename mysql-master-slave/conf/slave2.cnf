@@ -1,0 +1,7 @@
+[mysqld]
+# 唯一标识，与 master 和 slave1 不同
+server-id=3
+read_only=ON
+bind-address=0.0.0.0
+skip-name-resolve
+skip-ssl

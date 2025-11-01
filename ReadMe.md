@@ -34,3 +34,18 @@ docker exec -it mysql1 mysql -uroot -pRoot_Password_123 -e "
 docker exec -it mysql1 mysql -uroot -pRoot_Password_123 -e "SELECT * FROM performance_schema.replication_group_members;"
 
 6. 应用连接
+
+
+
+创建master mysql 
+```
+docker run --name mysql-master -p 3302:3306 -e MYSQL_ROOT_PASSWORD=aA123N456* -d mysql:8.0.33
+```
+创建slave mysql 1
+```
+docker run --name mysql-slave1 -p 3302:3306 -e MYSQL_ROOT_PASSWORD=aA123N456* -d mysql:8.0.33
+```
+创建slave mysql 2
+```
+docker run --name mysql-slave1 -p 3302:3306 -e MYSQL_ROOT_PASSWORD=aA123N456* -d mysql:8.0.33
+```

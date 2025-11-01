@@ -1,0 +1,13 @@
+[mysqld]
+# 唯一标识
+server-id=1
+# 开启 Binlog
+log-bin=mysql-bin
+# 数据库名称，可选
+binlog-do-db=testdb
+# 绑定所有 IP
+bind-address=0.0.0.0
+# 允许从节点连接
+skip-name-resolve
+# 忽略 SSL (简单测试用)
+skip-ssl

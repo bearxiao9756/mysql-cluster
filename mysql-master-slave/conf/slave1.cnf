@@ -1,0 +1,8 @@
+[mysqld]
+# 唯一标识，与 master 不同
+server-id=2
+# 只读，可选
+read_only=ON
+bind-address=0.0.0.0
+skip-name-resolve
+skip-ssl

@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  mysql-master:
+    image: registry.cn-shanghai.aliyuncs.com/wukongim/mysql
+    container_name: mysql-master
+    environment:
+      # 请设置一个安全密码
+      MYSQL_ROOT_PASSWORD: my_secure_password
+      # 复制用户
+      MYSQL_REPLICATION_USER: repl_user
+      MYSQL_REPLICATION_PASSWORD: repl_password
+    ports:
+      - "3306:3306"
+    volumes:
+      # 挂载自定义配置文件
+      - ./conf/master.cnf:/etc/mysql/conf.d/master.cnf
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pmy_secure_password"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mysql-slave1:
+    image: registry.cn-shanghai.aliyuncs.com/wukongim/mysql
+    container_name: mysql-slave1
+    environment:
+      MYSQL_ROOT_PASSWORD: my_secure_password
+    ports:
+      - "3307:3306" # 映射到宿主机的 3307 端口
+    volumes:
+      - ./conf/slave1.cnf:/etc/mysql/conf.d/slave1.cnf
+    command: --default-authentication-plugin=mysql_native_password
+    depends_on:
+      - mysql-master
+
+  mysql-slave2:
+    image: registry.cn-shanghai.aliyuncs.com/wukongim/mysql
+    container_name: mysql-slave2
+    environment:
+      MYSQL_ROOT_PASSWORD: my_secure_password
+    ports:
+      - "3308:3306" # 映射到宿主机的 3308 端口
+    volumes:
+      - ./conf/slave2.cnf:/etc/mysql/conf.d/slave2.cnf
+    command: --default-authentication-plugin=mysql_native_password
+    depends_on:
+      - mysql-master
