@@ -50,3 +50,19 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     depends_on:
       - mysql-master
+
+  proxysql:
+    image: proxysql/proxysql:2.5.5 # 推荐使用最新的稳定版本
+    container_name: proxysql
+    ports:
+      - "6033:6033" # 应用程序连接端口
+      - "6032:6032" # ProxySQL 管理端口 (Admin)
+    volumes:
+      - ./proxysql/conf:/etc/proxysql:ro
+      - ./proxysql/data:/var/lib/proxysql
+    depends_on:
+      - mysql-master
+      - mysql-slave1
+    environment:
+      # ProxySQL 管理员密码 (用于连接 6032 端口进行配置)
+      PROXYSQL_ADMIN_PASSWORD: af45d4daS*
