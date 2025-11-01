@@ -258,3 +258,20 @@ server-key.pem	  主服务器	主服务器私钥
 server-cert.pem	  主服务器	主服务器证书
 replica-key.pem	  从服务器	从服务器私钥 (MASTER_SSL_KEY)
 replica-cert.pem  从服务器	从服务器证书 (MASTER_SSL_CERT)
+
+
+## 
+```
+CHANGE MASTER TO
+  MASTER_HOST='mysql-master',
+  MASTER_USER='repl_user',
+  MASTER_PASSWORD='repl_password',
+  MASTER_LOG_FILE='binlog.000002',  -- 替换为您记录的 File
+  MASTER_LOG_POS=157,               -- 替换为您记录的 Position
+  MASTER_AUTO_POSITION=0,
+  MASTER_SSL=1,
+  MASTER_SSL_CA = '/etc/mysql/certs/ca.pem',
+  MASTER_SSL_CERT = '/etc/mysql/certs/replica-cert.pem',
+  MASTER_SSL_KEY = '/etc/mysql/certs/replica-key.pem',
+  MASTER_SSL_VERIFY_SERVER_CERT=1;
+```
