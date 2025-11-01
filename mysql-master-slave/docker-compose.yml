@@ -15,7 +15,7 @@ services:
     volumes:
       # 挂载自定义配置文件
       - ./conf/master.cnf:/etc/mysql/conf.d/master.cnf
-    command: --default-authentication-plugin=af45d4daS*
+    command: --default-authentication-plugin=mysql_native_password
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-paf45d4daS*"]
       interval: 10s
@@ -31,7 +31,7 @@ services:
       - "3307:3306" # 映射到宿主机的 3307 端口
     volumes:
       - ./conf/slave1.cnf:/etc/mysql/conf.d/slave1.cnf
-    command: --default-authentication-plugin=af45d4daS*
+    command: --default-authentication-plugin=mysql_native_password
     depends_on:
       - mysql-master
 
@@ -44,6 +44,6 @@ services:
       - "3308:3306" # 映射到宿主机的 3308 端口
     volumes:
       - ./conf/slave2.cnf:/etc/mysql/conf.d/slave2.cnf
-    command: --default-authentication-plugin=af45d4daS*
+    command: --default-authentication-plugin=mysql_native_password
     depends_on:
       - mysql-master
