@@ -69,7 +69,7 @@ services:
 
   # --- ProxySQL 代理层 ---
   proxysql:
-    image: proxysql/proxysql:2.5
+    image: proxysql/proxysql:latest
     container_name: proxysql
     # 宿主机端口映射 (6033是应用连接端口, 6032是管理端口)
     ports: 
