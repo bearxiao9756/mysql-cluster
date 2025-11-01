@@ -49,6 +49,11 @@ services:
     depends_on:
       mysql1:
         condition: service_healthy
+    healthcheck: # <-- 添加此块
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pRoot_Password_123"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
 
   # --- MySQL MGR 节点 3 ---
   mysql3:
@@ -70,6 +75,11 @@ services:
     depends_on:
       mysql1:
         condition: service_healthy
+    healthcheck: # <-- 添加此块
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pRoot_Password_123"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
 
   # --- ProxySQL 代理层 ---
   proxysql:
