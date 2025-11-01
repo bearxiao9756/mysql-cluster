@@ -4,4 +4,3 @@ server-id=3
 read_only=ON
 bind-address=0.0.0.0
 skip-name-resolve
-skip-ssl
