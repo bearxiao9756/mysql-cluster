@@ -197,6 +197,23 @@ Master_SSL_Verify_Server_Cert: No
 1 row in set, 1 warning (0.00 sec)
 ``` 
 
+# proxysql 代理
+进入 
+```
+docker exec -it proxysql mysql -u admin -p admin* -h 127.0.0.1 -P 6032
+```
+```
+-- 1. 更新全局变量中的管理员密码
+UPDATE global_variables SET variable_value='af45d4daS*' 
+WHERE variable_name='admin-admin_credentials';
+
+-- 2. 将修改加载到运行时内存
+LOAD ADMIN VARIABLES TO RUNTIME;
+
+-- 3. 将修改保存到磁盘（持久化）
+SAVE ADMIN VARIABLES TO DISK;
+
+```
 
 # 问题
 1. ssl 链接问题
